@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#5b4bdb">
+<meta name="description" content="SEFA Educational Center - AI English learning platform">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/icon-192.svg">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>SEFA Educational Center</title>
+<style>
+:root{--p:#5b4bdb;--p2:#7b68ee;--bg:#f6f7fb;--card:#fff;--text:#172033;--muted:#718096;--ok:#18a66a;--bad:#e14d5a}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(135deg,#3426a8,#7868ee);color:#fff;padding:18px 5%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5;box-shadow:0 5px 20px #3326a833}
+.logo{font-size:21px;font-weight:800;letter-spacing:.5px}.logo small{display:block;font-size:10px;opacity:.8;letter-spacing:2px}
+nav{display:flex;gap:8px;flex-wrap:wrap}nav button{background:#ffffff18;border:1px solid #ffffff33;color:#fff;padding:9px 12px;border-radius:10px;cursor:pointer}
+nav button:hover{background:#fff;color:#4c3bc2}
+.hero{padding:50px 5% 35px;background:linear-gradient(135deg,#eeeaff,#fff)}
+.hero h1{font-size:42px;margin:0 0 8px}.hero p{color:var(--muted);max-width:680px;font-size:17px}.badge{display:inline-block;background:#e3defe;color:#4b3ab8;padding:7px 12px;border-radius:99px;font-weight:700;font-size:12px}
+.container{max-width:1150px;margin:auto;padding:25px 5% 50px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--card);border-radius:18px;padding:20px;box-shadow:0 7px 25px #1b23400d;border:1px solid #e9eaf2}.card h3{margin:7px 0}.icon{font-size:28px}.muted{color:var(--muted)}
+button.primary{background:var(--p);color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer}button.primary:hover{background:#4939c4}
+.page{display:none}.page.active{display:block}.section-title{margin:10px 0 18px}
+.lesson{cursor:pointer;transition:.2s}.lesson:hover{transform:translateY(-3px)}
+textarea,input,select{width:100%;padding:12px;border:1px solid #dfe2eb;border-radius:11px;margin:8px 0;font-size:15px;background:#fff}
+.chat{height:330px;overflow:auto;background:#f8f8fc;border-radius:15px;padding:15px}.msg{padding:10px 13px;border-radius:13px;margin:8px 0;max-width:82%}.user{background:#e2dcff;margin-left:auto}.bot{background:#fff;border:1px solid #e8e8ef}
+.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}
+.question{padding:16px;background:#fafafe;border:1px solid #e8e8f1;border-radius:14px;margin-bottom:14px}.question label{display:block;padding:8px;cursor:pointer}
+.result{font-size:20px;text-align:center;padding:25px}.score{font-size:52px;font-weight:900;color:var(--p)}
+footer{text-align:center;padding:25px;color:var(--muted);font-size:13px}
+@media(max-width:650px){.hero h1{font-size:30px}header{align-items:flex-start;gap:10px;flex-direction:column}nav{width:100%}nav button{font-size:12px}.row{flex-direction:column;align-items:stretch}}
+
+.logoMark{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#ffd76a,#fff);color:#3326a8;font-size:21px;font-weight:900;margin-right:8px;box-shadow:0 4px 14px #0002}
+.logoWrap{display:flex;align-items:center}
+.profileBtn{background:#ffffff18;border:1px solid #ffffff33;color:#fff;padding:9px 12px;border-radius:10px;cursor:pointer}
+
+</head>
+<body>
+<header>
+  <div class="logoWrap"><span class="logoMark">S</span><div class="logo">SEFA Educational Center<small>LEARN • PRACTICE • SUCCEED</small></div></div><nav>
+    <button onclick="show('home')">Home</button><button id="installNav" onclick="installPWA()" style="display:none">📲 Install</button><button onclick="show('lessons')">Lessons</button>
+    <button onclick="show('speaking')">Speaking</button><button onclick="show('vocab')">Vocabulary</button>
+    <button onclick="show('grammar')">Grammar</button><button onclick="show('test')">Test</button>
+    <button onclick="show('result')">Result</button><button onclick="show('certificate')">Certificate</button><button onclick="show('profile')">Profile</button>
+  </nav>
+</header>
+
+<section id="home" class="page active">
+<div class="hero"><span class="badge">AI ENGLISH LEARNING PLATFORM</span><h1>Learn English with SEFA AI</h1>
+<p>Build your English skills with lessons, vocabulary, grammar, speaking practice and online tests — all in one beautiful application.</p>
+<button class="primary" onclick="show('lessons')">Start Learning →</button> <button id="installBtn" class="primary" style="display:none;margin-left:8px">📲 Install App</button></div>
+<div class="container"><h2 class="section-title">Your Learning Centre</h2><div class="grid">
+<div class="card"><div class="icon">👤</div><h3>Student Profile</h3><p class="muted">Save your name and learning details.</p><button class="primary" onclick="show('profile')">My Profile</button></div>
+<div class="card"><div class="icon">🏆</div><h3>Certificate</h3><p class="muted">Create a printable certificate after passing.</p><button class="primary" onclick="show('certificate')">Certificate</button></div>
+<div class="card"><div class="icon">🤖</div><h3>AI Assistant</h3><p class="muted">Ask questions and practice English with AI.</p><button class="primary" onclick="show('ai')">Open AI</button></div>
+<div class="card"><div class="icon">📚</div><h3>Lessons</h3><p class="muted">Study practical English topics.</p><button class="primary" onclick="show('lessons')">Lessons</button></div>
+<div class="card"><div class="icon">🗣️</div><h3>Speaking</h3><p class="muted">Practice speaking and pronunciation.</p><button class="primary" onclick="show('speaking')">Practice</button></div>
+<div class="card"><div class="icon">📝</div><h3>Test & Result</h3><p class="muted">Take a test and instantly see your result.</p><button class="primary" onclick="show('test')">Take Test</button></div>
+</div></div>
+</section>
+
+<section id="lessons" class="page"><div class="container"><h2>📚 English Lessons</h2><div class="grid">
+<div class="card lesson" onclick="lesson('Greetings & Introductions','Hello! My name is Ahmad. Nice to meet you. How are you?')"><div class="icon">👋</div><h3>Greetings</h3><p class="muted">Basic introductions and daily phrases.</p></div>
+<div class="card lesson" onclick="lesson('Daily English','I wake up at 7 o’clock. I have breakfast and go to school.')"><div class="icon">☀️</div><h3>Daily English</h3><p class="muted">Useful sentences for everyday life.</p></div>
+<div class="card lesson" onclick="lesson('Present Simple','I work every day. She studies English. They live in Kabul.')"><div class="icon">📘</div><h3>Present Simple</h3><p class="muted">Learn the basic present tense.</p></div>
+<div class="card lesson" onclick="lesson('Travel English','Where is the airport? How much is this ticket? I need help.')"><div class="icon">✈️</div><h3>Travel English</h3><p class="muted">English for travel and communication.</p></div>
+</div></div></section>
+
+<section id="ai" class="page"><div class="container"><h2>🤖 SEFA AI Assistant</h2><div class="card"><div id="chat" class="chat"><div class="msg bot">Hello! I am SEFA AI. Ask me an English question.</div></div><div class="row"><input id="chatInput" placeholder="Type your English question..." onkeydown="if(event.key==='Enter')sendChat()"><button class="primary" onclick="sendChat()">Send</button></div><p id="aiStatus" class="muted">Real AI mode: secure Node.js backend. Your API key stays on the server.</p></div></div></section>
+
+<section id="speaking" class="page"><div class="container"><h2>🗣️ Speaking Practice</h2><div class="card"><h3>Topic: Introduce Yourself</h3><p>Speak for 30–60 seconds:</p><blockquote>“Hello, my name is ____. I am from ____. I am learning English because ____.”</blockquote><button class="primary" onclick="speakPrompt()">🔊 Hear Example</button> <button class="primary" onclick="startSpeech()">🎙️ Start Speaking</button><p id="speechOut" class="muted">Your speech will appear here when supported by your browser.</p></div></div></section>
+
+<section id="vocab" class="page"><div class="container"><h2>📖 Vocabulary</h2><div class="grid" id="vocabGrid"></div></div></section>
+<section id="grammar" class="page"><div class="container"><h2>✍️ Grammar</h2><div class="grid">
+<div class="card"><h3>Present Simple</h3><p>I/You/We/They <b>work</b>. He/She <b>works</b>.</p></div>
+<div class="card"><h3>Past Simple</h3><p>I <b>worked</b> yesterday. She <b>went</b> home.</p></div>
+<div class="card"><h3>Future</h3><p>I <b>will study</b> tomorrow.</p></div>
+<div class="card"><h3>Articles</h3><p>Use <b>a/an</b> for one non-specific thing and <b>the</b> for a specific thing.</p></div>
+</div></div></section>
+
+<section id="test" class="page"><div class="container"><h2>📝 English Level Test</h2><div id="testBox" class="card"></div></div></section>
+<section id="result" class="page"><div class="container"><h2>📊 My Result</h2><div class="card result"><div class="score" id="score">—</div><p id="resultText">Complete the test to see your result.</p><button class="primary" onclick="show('test')">Retake Test</button></div></div></section>
+
+
+<section id="profile" class="page"><div class="container"><h2>👤 Student Profile</h2>
+<div class="card"><div class="grid">
+<div><label>Full Name</label><input id="pName" placeholder="Enter your full name"></div>
+<div><label>Student ID</label><input id="pId" placeholder="SEFA-001"></div>
+<div><label>Level</label><select id="pLevel"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></div>
+<div><label>Email</label><input id="pEmail" type="email" placeholder="student@example.com"></div>
+</div><button class="primary" onclick="saveProfile()">Save Profile</button><p id="profileMsg" class="muted"></p></div></div></section>
+
+<section id="certificate" class="page"><div class="container"><h2>🏆 Certificate of Achievement</h2>
+<div class="card" style="text-align:center;border:5px solid #e7d28b;padding:35px;background:linear-gradient(135deg,#fff,#fbf8ec)">
+<div class="logoMark" style="margin:auto">S</div><h1 style="margin:10px 0;color:#3326a8">SEFA Educational Center</h1><p>Certificate of Achievement</p>
+<h2 id="certName">Student Name</h2><p>has successfully completed the SEFA English Learning Assessment.</p>
+<div class="score" id="certScore">—</div><p>English Assessment Result</p><p id="certDate"></p>
+<button class="primary" onclick="window.print()">🖨️ Print / Save Certificate</button></div></div></section>
+
+<footer>© 2026 SEFA Educational Center • LEARN • PRACTICE • SUCCEED</footer>
+
+<script>
+const qs=[
+["What is the opposite of “hot”?","Cold",["Cold","Tall","Fast","Old"]],
+["Choose the correct sentence.","She goes to school every day.",["She go to school every day.","She goes to school every day.","She going school every day.","She gone to school every day."]],
+["What is the past of “go”?","Went",["Goed","Goes","Went","Going"]],
+["I ___ a student.","am",["is","am","are","be"]],
+["Choose the correct article: ___ apple.","an",["a","an","the","no article"]],
+["“Beautiful” is a…","Adjective",["Verb","Adjective","Pronoun","Preposition"]],
+["They ___ football yesterday.","played",["play","plays","played","playing"]],
+["What does “begin” mean?","Start",["Finish","Start","Sleep","Stop"]],
+["He is ___ than me.","taller",["tall","taller","tallest","more tall"]],
+["We ___ English now.","are studying",["study","studied","are studying","studies"]]
+];
+function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function lesson(t,c){alert(t+"\\n\\n"+c)}
+async function sendChat(){let i=document.getElementById('chatInput'),v=i.value.trim();if(!v)return;let c=document.getElementById('chat');c.innerHTML+=`<div class="msg user">${esc(v)}</div>`;i.value='';c.innerHTML+=`<div class="msg bot" id="typing">Thinking…</div>`;c.scrollTop=c.scrollHeight;
+try{let r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:v})});let d=await r.json();document.getElementById('typing')?.remove();c.innerHTML+=`<div class="msg bot">${esc(d.reply||d.error||"No response.")}</div>`}catch(e){document.getElementById('typing')?.remove();c.innerHTML+=`<div class="msg bot">Real AI connection is not running yet. Start the Node.js server and add your API key to .env.</div>`}c.scrollTop=c.scrollHeight}
+function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function speakPrompt(){speechSynthesis.speak(new SpeechSynthesisUtterance("Hello, my name is Ahmad. I am from Afghanistan. I am learning English because I want to communicate with people around the world."))}
+function startSpeech(){let R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R){document.getElementById('speechOut').textContent="Speech recognition is not supported in this browser.";return}let r=new R();r.lang="en-US";r.onresult=e=>document.getElementById('speechOut').textContent="You said: "+e.results[0][0].transcript;r.start()}
+const words=[["Hello","سلام"],["Learn","زده کړه"],["Speak","خبرې کول"],["Teacher","ښوونکی"],["Student","زده کوونکی"],["Book","کتاب"],["Friend","ملګری"],["School","ښوونځی"],["Beautiful","ښکلی"],["Important","مهم"],["Begin","پیل کول"],["Improve","ښه کول"]];
+document.getElementById('vocabGrid').innerHTML=words.map(w=>`<div class="card"><h3>${w[0]}</h3><p class="muted">${w[1]}</p></div>`).join("");
+let testBox=document.getElementById('testBox');
+testBox.innerHTML=qs.map((q,i)=>`<div class="question"><b>${i+1}. ${q[0]}</b>${q[2].map(o=>`<label><input type="radio" name="q${i}" value="${esc(o)}"> ${o}</label>`).join("")}</div>`).join("")+'<button class="primary" onclick="submitTest()">Submit Test</button>';
+function submitTest(){let s=0;qs.forEach((q,i)=>{let x=document.querySelector(`input[name=q${i}]:checked`);if(x&&x.value===q[1])s++});let pct=Math.round(s/qs.length*100);document.getElementById('score').textContent=pct+"%";document.getElementById('resultText').innerHTML=`You scored <b>${s}/${qs.length}</b>.<br>${pct>=60?"🎉 Passed! Keep learning and improving.":"Keep practicing and try the test again."}`;
+document.getElementById('certScore').textContent=pct+"%";
+document.getElementById('certName').textContent=localStorage.getItem('sefaName')||"Student Name";
+document.getElementById('certDate').textContent=new Date().toLocaleDateString();
+show('result')}
+
+function saveProfile(){let n=document.getElementById('pName').value.trim(),id=document.getElementById('pId').value.trim(),em=document.getElementById('pEmail').value.trim(),lv=document.getElementById('pLevel').value;localStorage.setItem('sefaName',n);localStorage.setItem('sefaId',id);localStorage.setItem('sefaEmail',em);localStorage.setItem('sefaLevel',lv);document.getElementById('certName').textContent=n||"Student Name";document.getElementById('profileMsg').textContent="Profile saved successfully."; }
+(function(){let n=localStorage.getItem('sefaName');if(n)document.getElementById('pName').value=n;let id=localStorage.getItem('sefaId');if(id)document.getElementById('pId').value=id;let em=localStorage.getItem('sefaEmail');if(em)document.getElementById('pEmail').value=em;let lv=localStorage.getItem('sefaLevel');if(lv)document.getElementById('pLevel').value=lv;document.getElementById('certName').textContent=n||"Student Name";})();
+
+<script>
+let deferredInstallPrompt = null;
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  const b = document.getElementById("installBtn");
+  const n = document.getElementById("installNav");
+  if (b) b.style.display = "inline-block";
+  if (n) n.style.display = "inline-block";
+});
+async function installPWA(){
+  if (!deferredInstallPrompt){
+    alert("To install: open this website in Chrome, then use the browser menu and choose “Install app” or “Add to Home screen”.");
+    return;
+  }
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+}
+document.getElementById("installBtn")?.addEventListener("click", installPWA);
+window.addEventListener("appinstalled", () => {
+  document.getElementById("installBtn")?.style && (document.getElementById("installBtn").style.display = "none");
+  document.getElementById("installNav")?.style && (document.getElementById("installNav").style.display = "none");
+});
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(console.error));
+}
+</script>
+</body></html>

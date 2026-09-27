@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#3023a5"/><stop offset="1" stop-color="#7567ee"/></linearGradient></defs>
+<rect width="900" height="260" rx="42" fill="#fff"/>
+<circle cx="135" cy="130" r="92" fill="url(#g)"/>
+<path d="M135 63l58 29v54c0 35-25 55-58 67-33-12-58-32-58-67V92z" fill="#fff" opacity=".95"/>
+<path d="M135 82l38 20v38c0 21-15 34-38 43-23-9-38-22-38-43v-38z" fill="#e7d28b"/>
+<text x="255" y="126" font-family="Arial,sans-serif" font-size="72" font-weight="800" fill="#3023a5">SEFA</text>
+<text x="260" y="172" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#30384a">Educational Center</text>
+<text x="260" y="210" font-family="Arial,sans-serif" font-size="19" fill="#7567ee">LEARN • PRACTICE • SUCCEED</text>
+</svg>
